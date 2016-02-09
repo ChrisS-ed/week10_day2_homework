@@ -16,3 +16,46 @@ Location.prototype = {
    request.send(null);
   }
 }
+
+window.onload = function() {
+
+  var form = document.querySelector('#locationSearch');
+  var input = document.querySelector('#locationInput');
+  var locationView = document.querySelector('#locationDisplay');
+  var storedLocationsView = document.querySelector('#storedLocations');
+
+  var locations = JSON.parse( localStorage.getItem('weather') ) || [];
+
+  var displayLocations = function() {
+    storedLocationsView.innerHTML = '';
+
+  //   for (book in books) {
+  //     var data = books[book];
+  //     var li = document.createElement('li');
+  //     li.innerHTML = "<img src='" + data.cover.small + "'>" + data.title + '<button class="removeBook" data-id="' + book + '">Remove Book</button>';
+  //     storedBooksView.appendChild(li);
+  //   }
+
+  }
+
+  form.onsubmit = function(event) {
+    event.preventDefault();
+    var location = input.value;
+    var currentLocation = new Location(location)
+
+    currentLocation.get(function() {
+      var data = currentLocation.data;
+      // var locationDisplay = "<h4>" + data.title + "</h4><img src='"+ data.cover.large + "'><button id='addBook'>Add to list</button>";
+      var locationDisplay = "<h4>" + data.name + "</h4>";
+      locationView.innerHTML = locationDisplay;
+
+      // document.querySelector('#addBook').onclick = function() {
+      //   books.push(data);
+      //   localStorage.setItem('books', JSON.stringify(books));
+      //   displayBooks();
+      // }
+    })
+
+  }
+
+}
