@@ -45,8 +45,11 @@ window.onload = function() {
 
     currentLocation.get(function() {
       var data = currentLocation.data;
+
+      console.log(data.weather[0].main);
+
       // var locationDisplay = "<h4>" + data.title + "</h4><img src='"+ data.cover.large + "'><button id='addBook'>Add to list</button>";
-      var locationDisplay = "<h4>" + data.name + "</h4>";
+      var locationDisplay = "<h4>Location: " + data.name + ", Current weather: " + data.weather[0].main + "</h4>";
       locationView.innerHTML = locationDisplay;
 
       // document.querySelector('#addBook').onclick = function() {
